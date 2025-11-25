@@ -1,3 +1,5 @@
+import { mockData } from "./mockData";
+
 import "./App.css";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
