@@ -1,10 +1,5 @@
-브랜치 전환하여 코드 확인
-
-```
-git checkout <브랜치명>
-```
-
-1. `layout` : 레이아웃만
-2. `props-drilling` : props drilling으로 구현
-3. `useReducer`: useReducer훅 활용해
-4. 
+| Branch Name        | Description                                   |
+| ------------------ | --------------------------------------------- |
+| **felayout**       | 기본 레이아웃 구성 (initial layout structure) |
+| **props-drilling** | props drilling 방식으로 상태 전달             |
+| **useReducer**     | `useReducer`를 활용한 상태 관리 방식          |
