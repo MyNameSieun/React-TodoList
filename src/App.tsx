@@ -4,32 +4,51 @@ import "./App.css";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
 import List from "./components/List";
-import { useState } from "react";
+import { useReducer } from "react";
 import { v4 as uuidv4 } from "uuid";
+import type { Todo } from "./types/todo";
+
+type Action =
+  | { type: "CREATE"; data: Todo }
+  | { type: "UPDATE"; targetId: string }
+  | { type: "DELETE"; targetId: string };
+
+const reducer = (state: Todo[], action: Action) => {
+  switch (action.type) {
+    case "CREATE":
+      return [action.data, ...state];
+    case "UPDATE":
+      return state.map((item) =>
+        item.id === action.targetId ? { ...item, isDone: !item.isDone } : item,
+      );
+    case "DELETE":
+      return state.filter((item) => item.id !== action.targetId);
+    default:
+      return state;
+  }
+};
 
 const App = () => {
-  const [todos, setTodos] = useState(mockData);
+  const [todos, dispatch] = useReducer(reducer, mockData);
 
   const onCreate = (content: string) => {
-    const newTodo = {
-      id: uuidv4(),
-      isDone: false,
-      content: content,
-      date: new Date().getTime(),
-    };
-    setTodos([newTodo, ...todos]);
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: uuidv4(),
+        isDone: false,
+        content: content,
+        date: new Date().getTime(),
+      },
+    });
   };
 
   const onUpdate = (targetId: string) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo,
-      ),
-    );
+    dispatch({ type: "UPDATE", targetId: targetId });
   };
 
   const onDelete = (targetId: string) => {
-    setTodos(todos.filter((todo) => todo.id !== targetId));
+    dispatch({ type: "DELETE", targetId: targetId });
   };
 
   return (
