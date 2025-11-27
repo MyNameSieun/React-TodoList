@@ -1,11 +1,10 @@
 import { useMemo, useState } from "react";
 import Todoitem from "./Todoitem";
-import { useTodoState } from "../context/TodoStateContext";
+import { useTodoState } from "../context/TodoContext";
 
 const List = () => {
   const [search, setSearch] = useState("");
   const todos = useTodoState();
-  console.log(useTodoState());
 
   const onChangeSerach = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
