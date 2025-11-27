@@ -18,7 +18,7 @@
 ```shell
 git clone https://github.com/MyNameSieun/React-TodoList.git .
 git branch -a
-git checkout <브랜치명>
+git switch <브랜치명>
 ```
 
 ## ② 특정 브랜치만 바로 선택해서 클론
