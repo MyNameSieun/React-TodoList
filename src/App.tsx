@@ -4,10 +4,11 @@ import "./App.css";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
 import List from "./components/List";
-import { useCallback, useReducer } from "react";
+import { useCallback, useMemo, useReducer } from "react";
 import { v4 as uuidv4 } from "uuid";
 import type { Todo } from "./types/todo";
-import { TodoContext } from "./context/TodoContext";
+import { TodoStateContext } from "./context/TodoStateContext";
+import { TodoDispatchContext } from "./context/TodoDispath";
 
 type Action =
   | { type: "CREATE"; data: Todo }
@@ -52,15 +53,22 @@ const App = () => {
     dispatch({ type: "DELETE", targetId: targetId });
   }, []);
 
+  const memoizedDispatch = useMemo(() => {
+    return { onCreate, onUpdate, onDelete };
+  }, []);
+
   return (
     <div className="mx-auto mt-30 flex h-140 w-[700px] flex-col gap-10 rounded-2xl bg-white p-10 px-10 shadow-md">
       <Header />
-      <TodoContext.Provider value={{ todos, onCreate, onUpdate, onDelete }}>
-        <Editor />
-        <div className="scrollbar-hide overflow-y-auto">
-          <List />
-        </div>
-      </TodoContext.Provider>
+      <TodoStateContext.Provider value={todos}>
+        <TodoDispatchContext value={memoizedDispatch}>
+          <Editor />
+
+          <div className="scrollbar-hide overflow-y-auto">
+            <List />
+          </div>
+        </TodoDispatchContext>
+      </TodoStateContext.Provider>
     </div>
   );
 };

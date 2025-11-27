@@ -1,11 +1,11 @@
 import { useContext, useRef, useState } from "react";
-import { TodoContext, useTodoContext } from "../context/TodoContext";
+import { TodoDispatchContext, useTodoDispatch } from "../context/TodoDispath";
 
 const Editor = () => {
   const [content, setContent] = useState("");
   const contentRef = useRef<HTMLInputElement>(null);
-  const { onCreate } = useTodoContext();
-  const data = useContext(TodoContext);
+  const { onCreate } = useTodoDispatch();
+  const data = useContext(TodoDispatchContext);
   console.log(data);
 
   const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
