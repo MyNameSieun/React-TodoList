@@ -1,0 +1,8 @@
+import React from "react";
+
+const Box2 = () => {
+  console.log("Box2 렌더링");
+  return <div className="h-[100px] w-[100px] bg-blue-300">Box2</div>;
+};
+
+export default React.memo(Box2);
