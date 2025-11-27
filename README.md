@@ -2,14 +2,14 @@
 
 > 상태 관리 방식과 렌더링 최적화 기법을 브랜치 단위로 분리해 비교할 수 있도록 구성하였다.
 
-| Branch Name        | Description                                     |
-| ------------------ | ----------------------------------------------- |
-| **layout**         | 기본 레이아웃 구성 (initial layout structure)   |
-| **props-drilling** | props drilling 방식으로 상태 전달               |
-| **useReducer**     | `useReducer`를 활용한 상태 관리                 |
-| **useMemo**        | `useMemo`만 적용한 값 메모이제이션 최적화       |
-| **react-memo**     | `React.memo`만 적용한 컴포넌트 렌더링 최적화    |
-| **useCallback**    | `useCallback`만 적용한 함수 메모이제이션 최적화 |
+| Branch Name        | Description                         |
+| ------------------ | ----------------------------------- |
+| **layout**         | 기본 레이아웃 구조 구성             |
+| **props-drilling** | props drilling 방식으로 상태 전달   |
+| **useReducer**     | useReducer 방식으로 상태 관리       |
+| **useMemo**        | useMemo로 연산 결과 메모이제이션    |
+| **react-memo**     | React.memo로 컴포넌트 렌더링 최적화 |
+| **useCallback**    | useCallback으로 함수 재생성 방지    |
 
 # 🔀 브랜치 전환 / 브랜치 클론 방법
 
