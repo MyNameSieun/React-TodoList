@@ -1,17 +1,8 @@
 import React from "react";
 import type { Todo } from "../types/todo";
-interface TodoitemProps extends Todo {
-  onUpdate: (targetId: string) => void;
-  onDelete: (targetId: string) => void;
-}
-const Todoitem = ({
-  id,
-  isDone,
-  content,
-  date,
-  onUpdate,
-  onDelete,
-}: TodoitemProps) => {
+import { useTodoContext } from "../context/TodoContext";
+const Todoitem = ({ id, isDone, content, date }: Todo) => {
+  const { onUpdate, onDelete } = useTodoContext();
   const onChangeCheckbox = () => {
     onUpdate(id);
   };

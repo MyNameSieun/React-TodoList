@@ -1,11 +1,12 @@
-import { useRef, useState } from "react";
-interface EditorProps {
-  onCreate: (content: string) => void;
-}
+import { useContext, useRef, useState } from "react";
+import { TodoContext, useTodoContext } from "../context/TodoContext";
 
-const Editor = ({ onCreate }: EditorProps) => {
+const Editor = () => {
   const [content, setContent] = useState("");
   const contentRef = useRef<HTMLInputElement>(null);
+  const { onCreate } = useTodoContext();
+  const data = useContext(TodoContext);
+  console.log(data);
 
   const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);

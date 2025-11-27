@@ -1,14 +1,10 @@
 import { useMemo, useState } from "react";
-import type { Todo } from "../types/todo";
 import Todoitem from "./Todoitem";
+import { useTodoContext } from "../context/TodoContext";
 
-interface ListProps {
-  todos: Todo[];
-  onUpdate: (targetId: string) => void;
-  onDelete: (targetId: string) => void;
-}
-const List = ({ todos, onUpdate, onDelete }: ListProps) => {
+const List = () => {
   const [search, setSearch] = useState("");
+  const { todos } = useTodoContext();
 
   const onChangeSerach = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -52,14 +48,7 @@ const List = ({ todos, onUpdate, onDelete }: ListProps) => {
         className="flex-1 border-b border-gray-200 py-3 text-xs outline-none focus:border-blue-400"
       />
       {filteredTodos.map((todo) => {
-        return (
-          <Todoitem
-            key={todo.id}
-            {...todo}
-            onUpdate={onUpdate}
-            onDelete={onDelete}
-          />
-        );
+        return <Todoitem key={todo.id} {...todo} />;
       })}
     </div>
   );

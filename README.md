@@ -10,6 +10,7 @@
 | **useMemo**        | useMemo로 연산 결과 메모이제이션    |
 | **react-memo**     | React.memo로 컴포넌트 렌더링 최적화 |
 | **useCallback**    | useCallback으로 함수 재생성 방지    |
+| **context-api**    | useReducer 방식으로 상태 관리    |
 
 # 🔀 브랜치 전환 / 브랜치 클론 방법
 

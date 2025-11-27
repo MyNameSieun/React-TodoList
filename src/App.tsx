@@ -7,6 +7,7 @@ import List from "./components/List";
 import { useCallback, useReducer } from "react";
 import { v4 as uuidv4 } from "uuid";
 import type { Todo } from "./types/todo";
+import { TodoContext } from "./context/TodoContext";
 
 type Action =
   | { type: "CREATE"; data: Todo }
@@ -54,10 +55,12 @@ const App = () => {
   return (
     <div className="mx-auto mt-30 flex h-140 w-[700px] flex-col gap-10 rounded-2xl bg-white p-10 px-10 shadow-md">
       <Header />
-      <Editor onCreate={onCreate} />
-      <div className="scrollbar-hide overflow-y-auto">
-        <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
-      </div>
+      <TodoContext.Provider value={{ todos, onCreate, onUpdate, onDelete }}>
+        <Editor />
+        <div className="scrollbar-hide overflow-y-auto">
+          <List />
+        </div>
+      </TodoContext.Provider>
     </div>
   );
 };
