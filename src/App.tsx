@@ -4,7 +4,7 @@ import "./App.css";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
 import List from "./components/List";
-import { useReducer } from "react";
+import { useCallback, useReducer } from "react";
 import { v4 as uuidv4 } from "uuid";
 import type { Todo } from "./types/todo";
 
@@ -31,7 +31,7 @@ const reducer = (state: Todo[], action: Action) => {
 const App = () => {
   const [todos, dispatch] = useReducer(reducer, mockData);
 
-  const onCreate = (content: string) => {
+  const onCreate = useCallback((content: string) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -41,15 +41,15 @@ const App = () => {
         date: new Date().getTime(),
       },
     });
-  };
+  }, []);
 
-  const onUpdate = (targetId: string) => {
+  const onUpdate = useCallback((targetId: string) => {
     dispatch({ type: "UPDATE", targetId: targetId });
-  };
+  }, []);
 
-  const onDelete = (targetId: string) => {
+  const onDelete = useCallback((targetId: string) => {
     dispatch({ type: "DELETE", targetId: targetId });
-  };
+  }, []);
 
   return (
     <div className="mx-auto mt-30 flex h-140 w-[700px] flex-col gap-10 rounded-2xl bg-white p-10 px-10 shadow-md">
