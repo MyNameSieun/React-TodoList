@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { Todo } from "../types/todo";
 import Todoitem from "./Todoitem";
 
@@ -24,9 +24,27 @@ const List = ({ todos, onUpdate, onDelete }: ListProps) => {
   };
   const filteredTodos = getFilteredData();
 
+  const { totalCount, doneCount, notDoneCount } = useMemo(() => {
+    // 메모이제이션 하고 싶은 연산
+    console.log("getAnalyzedData 호출!");
+    const totalCount = todos.length;
+    const doneCount = todos.filter((todo) => todo.isDone).length;
+    const notDoneCount = totalCount - doneCount;
+
+    return {
+      totalCount,
+      doneCount,
+      notDoneCount,
+    };
+  }, [todos]);
+
   return (
     <div className="flex flex-col gap-3">
       <h4 className="font-bold">Todo List ✨</h4>
+      <div>total: {totalCount}</div>
+      <div>Done: {doneCount}</div>
+      <div>notDoneCount: {notDoneCount}</div>
+
       <input
         value={search}
         onChange={onChangeSerach}
