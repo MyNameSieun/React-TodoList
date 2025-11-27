@@ -35,11 +35,4 @@ const Todoitem = ({
   );
 };
 
-export default React.memo(Todoitem, (prevProps, nextProps) => {
-  if (prevProps.id != nextProps.id) return false;
-  if (prevProps.isDone != nextProps.isDone) return false;
-  if (prevProps.content != nextProps.content) return false;
-  if (prevProps.date != nextProps.date) return false;
-
-  return true;
-});
+export default React.memo(Todoitem);
