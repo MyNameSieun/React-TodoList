@@ -1,8 +1,8 @@
 import React from "react";
 import type { Todo } from "../types/todo";
-import { useTodoContext } from "../context/TodoContext";
+import { useTodoDispatch } from "../context/TodoContext";
 const Todoitem = ({ id, isDone, content, date }: Todo) => {
-  const { onUpdate, onDelete } = useTodoContext();
+  const { onUpdate, onDelete } = useTodoDispatch();
   const onChangeCheckbox = () => {
     onUpdate(id);
   };

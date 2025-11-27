@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
 import Todoitem from "./Todoitem";
-import { useTodoContext } from "../context/TodoContext";
+import { useTodoState } from "../context/TodoContext";
 
 const List = () => {
   const [search, setSearch] = useState("");
-  const { todos } = useTodoContext();
+  const todos = useTodoState();
 
   const onChangeSerach = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -22,7 +22,6 @@ const List = () => {
 
   const { totalCount, doneCount, notDoneCount } = useMemo(() => {
     // 메모이제이션 하고 싶은 연산
-    console.log("getAnalyzedData 호출!");
     const totalCount = todos.length;
     const doneCount = todos.filter((todo) => todo.isDone).length;
     const notDoneCount = totalCount - doneCount;
